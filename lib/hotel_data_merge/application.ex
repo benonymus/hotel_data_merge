@@ -11,6 +11,7 @@ defmodule HotelDataMerge.Application do
       HotelDataMergeWeb.Telemetry,
       {DNSCluster, query: Application.get_env(:hotel_data_merge, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: HotelDataMerge.PubSub},
+      {Cachex, name: :data_cache},
       # Start a worker by calling: HotelDataMerge.Worker.start_link(arg)
       # {HotelDataMerge.Worker, arg},
       # Start to serve requests, typically the last entry
