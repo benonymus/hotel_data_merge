@@ -31,4 +31,6 @@ Alternatively with caching in place a different way of applying the filters coul
 We could cache the fully processed data set and run the filters against that.
 If there are many consecutive requests for the same data then I think it is worth to add, but with a short retention period to not serve out of date data.
 
+On the `cached_version` branch you can see the version with implemented cache.
+
 I decided against adding a database as the important functionality is the data procurement and merging. Storing it does not seem neccessary.
