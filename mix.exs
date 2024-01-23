@@ -40,7 +40,8 @@ defmodule HotelDataMerge.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, ">= 0.0.0"},
       {:req, "~> 0.4.0"},
-      {:parameter, "~> 0.13.0"}
+      {:parameter, "~> 0.13.0"},
+      {:recase, "~> 0.7.0"}
     ]
   end
 

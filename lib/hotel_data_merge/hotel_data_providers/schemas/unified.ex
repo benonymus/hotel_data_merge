@@ -11,7 +11,7 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
   end
 
   def trim(nil), do: nil
-  def trim(string) when is_binary(string), do: String.trim(string)
+  def trim(string) when is_binary(string), do: string |> String.trim() |> Recase.to_sentence()
   def trim(list) when is_list(list), do: for(string <- list, do: trim(string))
   def trim(value), do: value
 
@@ -71,7 +71,7 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
     def changeset(data, attrs) do
       data
       |> cast(attrs, [:link, :description])
-      |> Unified.ensure_trimmed([:link, :description])
+      |> Unified.ensure_trimmed([:description])
     end
   end
 
