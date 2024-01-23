@@ -25,10 +25,7 @@ You only need to create the new params for the initial mapping and add the new p
 
 The setup with the params and with the embedded schema allows us to validate the external data easily.
 
-On this branch I added caching for the unified entries per provider.
+I added caching for the unified entries per provider.
 This sidesteps the request and subsequent processing of external data for 30 seconds (short limit in case remote data changes) and then applies the fresh filters on this data set.
-The version without caching can be seen on the main branch.
-
-On the `cached_version` branch you can see the version with implemented cache.
 
 I decided against adding a database as the important functionality is the data procurement and merging. Storing it does not seem neccessary.
