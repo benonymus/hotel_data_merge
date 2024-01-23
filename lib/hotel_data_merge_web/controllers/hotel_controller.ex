@@ -1,17 +1,11 @@
 defmodule HotelDataMergeWeb.HotelController do
   use HotelDataMergeWeb, :controller
 
-  def index(conn, %{"destination_id" => destination_id}) do
-    # get hotels
-    render(conn, :index, hotels: [])
-  end
+  alias HotelDataMerge.HotelDataProviders.Data
 
-  def index(conn, %{"hotel_id" => hotel_ids}) do
-    # get hotels
-    render(conn, :index, hotels: [])
-  end
-
-  def index(conn, _) do
-    render(conn, :index, hotels: [])
+  def index(conn, params) do
+    conn
+    |> put_status(200)
+    |> render(:index, hotels: Data.get(params))
   end
 end

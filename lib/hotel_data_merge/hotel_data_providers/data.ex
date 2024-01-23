@@ -22,10 +22,10 @@ defmodule HotelDataMerge.HotelDataProviders.Data do
     parser_module: Paperflies
   ]
 
-  def get_data() do
-    acme_task = Task.async(fn -> DataLoader.get(@acme_attrs) end)
-    patagonia_task = Task.async(fn -> DataLoader.get(@patagonia_attrs) end)
-    paperflies_task = Task.async(fn -> DataLoader.get(@paperflies_attrs) end)
+  def get(filters) do
+    acme_task = Task.async(fn -> DataLoader.get(@acme_attrs, filters) end)
+    patagonia_task = Task.async(fn -> DataLoader.get(@patagonia_attrs, filters) end)
+    paperflies_task = Task.async(fn -> DataLoader.get(@paperflies_attrs, filters) end)
 
     available_keys = Map.keys(Unified.Data.__struct__())
 
