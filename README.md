@@ -11,8 +11,8 @@ The deployed version can be found at (the first load might take a few seconds, i
 
 The following filters are available (with any desired value):
 
-- `?destination_id=1122`
-- `?hotel_ids[]=f8c9&hotel_ids[]=SjyX`
+- `?destination=1122`
+- `?hotels[]=f8c9&hotels[]=SjyX`
 
 ## Thoughts on performance and other aspects
 
@@ -30,3 +30,5 @@ It would probably be the best to cache the responses or the cleaned data set bef
 Alternatively with caching in place a different way of applying the filters could be considered.
 We could cache the fully processed data set and run the filters against that.
 If there are many consecutive requests for the same data then I think it is worth to add, but with a short retention period to not serve out of date data.
+
+I decided against adding a database as the important functionality is the data procurement and merging. Storing it does not seem neccessary.

@@ -33,10 +33,10 @@ defmodule HotelDataMerge.HotelDataProviders.DataLoader do
     |> Enum.reject(&is_nil(&1))
   end
 
-  def passes_filter?(data, %{"destination_id" => destination_id_filter}),
-    do: Integer.to_string(data.destination_id) == destination_id_filter
+  def passes_filter?(data, %{"destination" => destination_id}),
+    do: Integer.to_string(data.destination_id) == destination_id
 
-  def passes_filter?(data, %{"hotel_ids" => hotel_ids}) when is_list(hotel_ids),
+  def passes_filter?(data, %{"hotels" => hotel_ids}) when is_list(hotel_ids),
     do: data.id in hotel_ids
 
   def passes_filter?(_, _), do: true
