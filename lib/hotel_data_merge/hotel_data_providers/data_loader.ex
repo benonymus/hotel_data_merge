@@ -7,7 +7,15 @@ defmodule HotelDataMerge.HotelDataProviders.DataLoader do
   require Logger
 
   def get([url: url, parser_module: parser_module], filters) do
-    Req.get!(url).body
+    Req.get(url)
+    |> case do
+      {:ok, %Req.Response{status: 200, body: body}} ->
+        body
+
+      err ->
+        Logger.warning(inspect(err))
+        []
+    end
     |> Stream.map(fn data ->
       with {:ok, validated_params} <- parser_module.load(data),
            {:passes_filter?, true} <-

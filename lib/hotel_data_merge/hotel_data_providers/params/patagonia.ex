@@ -4,6 +4,15 @@ defmodule HotelDataMerge.HotelDataProviders.Params.Patagonia do
   """
   use Parameter.Schema
 
+  defmodule ImageModel do
+    use Parameter.Schema
+
+    param do
+      field(:link, :string, key: "url")
+      field(:description, :string)
+    end
+  end
+
   # Fields that are not supplied by the provider are left out.
   # For the full list of fields check the unified schema.
   param do
@@ -23,15 +32,8 @@ defmodule HotelDataMerge.HotelDataProviders.Params.Patagonia do
     end
 
     has_one :images, Images do
-      has_many :rooms, ImageModel do
-        field(:link, :string, key: "url")
-        field(:description, :string)
-      end
-
-      has_many :amenities, ImageModel do
-        field(:link, :string, key: "url")
-        field(:description, :string)
-      end
+      has_many(:rooms, ImageModel)
+      has_many(:amenities, ImageModel)
     end
   end
 

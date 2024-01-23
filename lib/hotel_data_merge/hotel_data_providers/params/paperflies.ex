@@ -4,6 +4,15 @@ defmodule HotelDataMerge.HotelDataProviders.Params.Paperflies do
   """
   use Parameter.Schema
 
+  defmodule ImageModel do
+    use Parameter.Schema
+
+    param do
+      field(:link, :string)
+      field(:description, :string, key: "caption")
+    end
+  end
+
   # Fields that are not supplied by the provider are left out.
   # For the full list of fields check the unified schema.
   param do
@@ -24,15 +33,8 @@ defmodule HotelDataMerge.HotelDataProviders.Params.Paperflies do
     end
 
     has_one :images, Images do
-      has_many :rooms, ImageModel do
-        field(:link, :string)
-        field(:description, :string, key: "caption")
-      end
-
-      has_many :site, ImageModel do
-        field(:link, :string)
-        field(:description, :string, key: "caption")
-      end
+      has_many(:rooms, ImageModel)
+      has_many(:site, ImageModel)
     end
   end
 

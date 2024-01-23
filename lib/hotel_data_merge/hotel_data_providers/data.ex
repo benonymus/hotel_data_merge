@@ -8,7 +8,7 @@ defmodule HotelDataMerge.HotelDataProviders.Data do
   alias HotelDataMerge.HotelDataProviders.Params.{Acme, Patagonia, Paperflies}
   alias HotelDataMerge.HotelDataProviders.Schemas.Unified
 
-  # data providers and data parser modules
+  # data provider urls and data parser modules
   @acme_attrs [
     url: "https://5f2be0b4ffc88500167b85a0.mockapi.io/suppliers/acme",
     parser_module: Acme
