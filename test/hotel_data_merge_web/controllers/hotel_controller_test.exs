@@ -19,64 +19,67 @@ defmodule HotelDataMergeWeb.HotelControllerTest do
         "amenities" => %{
           "general" => [
             "Pool",
-            "Wi fi",
-            "Aircon",
             "Business center",
-            "Bath tub",
-            "Breakfast",
+            "Wi fi",
             "Dry cleaning",
-            "Bar",
+            "Breakfast",
             "Outdoor pool",
-            "Childcare",
-            "Parking",
-            "Concierge"
+            "Indoor pool",
+            "Childcare"
           ],
-          "room" => ["Aircon", "Minibar", "Tv", "Bathtub", "Hair dryer"]
+          "room" => ["Aircon", "Tv", "Coffee machine", "Kettle", "Hair dryer", "Iron", "Tub"]
         },
-        "booking_conditions" => [],
+        "booking_conditions" => [
+          "All children are welcome one child under 12 years stays free of charge when using existing beds one child under 2 years stays free of charge in a child's cot/crib one child under 4 years stays free of charge when using existing beds one older child or adult is charged sgd 82 39 per person per night in an extra bed the maximum number of children's cots/cribs in a room is 1 there is no capacity for extra beds in the room",
+          "Pets are not allowed",
+          "Wi fi is available in all areas and is free of charge",
+          "Free private parking is possible on site (reservation is not needed)",
+          "Guests are required to show a photo identification and credit card upon check in please note that all special requests are subject to availability and additional charges may apply payment before arrival via bank transfer is required the property will contact you after you book to provide instructions please note that the full amount of the reservation is due before arrival resorts world sentosa will send a confirmation with detailed payment information after full payment is taken, the property's details, including the address and where to collect keys, will be emailed to you bag checks will be conducted prior to entry to adventure cove waterpark === upon check in, guests will be provided with complimentary sentosa pass (monorail) to enjoy unlimited transportation between sentosa island and harbour front ( vivo city) === prepayment for non refundable bookings will be charged by rws call centre === all guests can enjoy complimentary parking during their stay, limited to one exit from the hotel per day === room reservation charges will be charged upon check in credit card provided upon reservation is for guarantee purpose === for reservations made with inclusive breakfast, please note that breakfast is applicable only for number of adults paid in the room rate any children or additional adults are charged separately for breakfast and are to paid directly to the hotel"
+        ],
         "description" =>
-          "InterContinental Singapore Robertson Quay is luxury's preferred address offering stylishly cosmopolitan riverside living for discerning travelers to Singapore. Prominently situated along the Singapore River, the 225-room inspiring luxury hotel is easily accessible to the Marina Bay Financial District, Central Business District, Orchard Road and Singapore Changi International Airport, all located a short drive away. The hotel features the latest in Club InterContinental design and service experience, and five dining options including Publico, an Italian landmark dining and entertainment destination by the waterfront.",
+          "Located at the western tip of Resorts World Sentosa, guests at the Beach Villas are guaranteed privacy while they enjoy spectacular views of glittering waters. Guests will find themselves in paradise with this series of exquisite tropical sanctuaries, making it the perfect setting for an idyllic retreat. Within each villa, guests will discover living areas and bedrooms that open out to mini gardens, private timber sundecks and verandahs elegantly framing either lush greenery or an expanse of sea. Guests are assured of a superior slumber with goose feather pillows and luxe mattresses paired with 400 thread count Egyptian cotton bed linen, tastefully paired with a full complement of luxurious in-room amenities and bathrooms boasting rain showers and free-standing tubs coupled with an exclusive array of ESPA amenities and toiletries. Guests also get to enjoy complimentary day access to the facilities at Asia’s flagship spa – the world-renowned ESPA.",
         "destination_id" => 5432,
-        "id" => "SjyX",
+        "id" => "iJhz",
         "images" => %{
-          "amenities" => [],
+          "amenities" => [
+            %{
+              "description" => "RWS",
+              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/0.jpg"
+            },
+            %{
+              "description" => "Sentosa Gateway",
+              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/6.jpg"
+            }
+          ],
           "rooms" => [
             %{
               "description" => "Double room",
-              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i93_m.jpg"
+              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/2.jpg"
             },
             %{
               "description" => "Bathroom",
-              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i94_m.jpg"
+              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/4.jpg"
+            },
+            %{
+              "description" => "Double room",
+              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/3.jpg"
             }
           ],
           "site" => [
             %{
-              "description" => "Restaurant",
-              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i1_m.jpg"
-            },
-            %{
-              "description" => "Hotel Exterior",
-              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i2_m.jpg"
-            },
-            %{
-              "description" => "Entrance",
-              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i5_m.jpg"
-            },
-            %{
-              "description" => "Bar",
-              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i24_m.jpg"
+              "description" => "Front",
+              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/1.jpg"
             }
           ]
         },
         "location" => %{
-          "address" => "1 Nanson Rd, Singapore 238909",
+          "address" => "8 Sentosa Gateway, Beach Villas, 098269",
           "city" => "Singapore",
           "country" => "Singapore",
-          "lat" => nil,
-          "lng" => nil
+          "lat" => "1.264751",
+          "lng" => "103.824006"
         },
-        "name" => "InterContinental Singapore Robertson Quay"
+        "name" => "Beach Villas Singapore"
       },
       %{
         "amenities" => %{
@@ -149,67 +152,64 @@ defmodule HotelDataMergeWeb.HotelControllerTest do
         "amenities" => %{
           "general" => [
             "Pool",
-            "Business center",
             "Wi fi",
-            "Dry cleaning",
+            "Aircon",
+            "Business center",
+            "Bath tub",
             "Breakfast",
+            "Dry cleaning",
+            "Bar",
             "Outdoor pool",
-            "Indoor pool",
-            "Childcare"
+            "Childcare",
+            "Parking",
+            "Concierge"
           ],
-          "room" => ["Aircon", "Tv", "Coffee machine", "Kettle", "Hair dryer", "Iron", "Tub"]
+          "room" => ["Aircon", "Minibar", "Tv", "Bathtub", "Hair dryer"]
         },
-        "booking_conditions" => [
-          "All children are welcome one child under 12 years stays free of charge when using existing beds one child under 2 years stays free of charge in a child's cot/crib one child under 4 years stays free of charge when using existing beds one older child or adult is charged sgd 82 39 per person per night in an extra bed the maximum number of children's cots/cribs in a room is 1 there is no capacity for extra beds in the room",
-          "Pets are not allowed",
-          "Wi fi is available in all areas and is free of charge",
-          "Free private parking is possible on site (reservation is not needed)",
-          "Guests are required to show a photo identification and credit card upon check in please note that all special requests are subject to availability and additional charges may apply payment before arrival via bank transfer is required the property will contact you after you book to provide instructions please note that the full amount of the reservation is due before arrival resorts world sentosa will send a confirmation with detailed payment information after full payment is taken, the property's details, including the address and where to collect keys, will be emailed to you bag checks will be conducted prior to entry to adventure cove waterpark === upon check in, guests will be provided with complimentary sentosa pass (monorail) to enjoy unlimited transportation between sentosa island and harbour front ( vivo city) === prepayment for non refundable bookings will be charged by rws call centre === all guests can enjoy complimentary parking during their stay, limited to one exit from the hotel per day === room reservation charges will be charged upon check in credit card provided upon reservation is for guarantee purpose === for reservations made with inclusive breakfast, please note that breakfast is applicable only for number of adults paid in the room rate any children or additional adults are charged separately for breakfast and are to paid directly to the hotel"
-        ],
+        "booking_conditions" => [],
         "description" =>
-          "Located at the western tip of Resorts World Sentosa, guests at the Beach Villas are guaranteed privacy while they enjoy spectacular views of glittering waters. Guests will find themselves in paradise with this series of exquisite tropical sanctuaries, making it the perfect setting for an idyllic retreat. Within each villa, guests will discover living areas and bedrooms that open out to mini gardens, private timber sundecks and verandahs elegantly framing either lush greenery or an expanse of sea. Guests are assured of a superior slumber with goose feather pillows and luxe mattresses paired with 400 thread count Egyptian cotton bed linen, tastefully paired with a full complement of luxurious in-room amenities and bathrooms boasting rain showers and free-standing tubs coupled with an exclusive array of ESPA amenities and toiletries. Guests also get to enjoy complimentary day access to the facilities at Asia’s flagship spa – the world-renowned ESPA.",
+          "InterContinental Singapore Robertson Quay is luxury's preferred address offering stylishly cosmopolitan riverside living for discerning travelers to Singapore. Prominently situated along the Singapore River, the 225-room inspiring luxury hotel is easily accessible to the Marina Bay Financial District, Central Business District, Orchard Road and Singapore Changi International Airport, all located a short drive away. The hotel features the latest in Club InterContinental design and service experience, and five dining options including Publico, an Italian landmark dining and entertainment destination by the waterfront.",
         "destination_id" => 5432,
-        "id" => "iJhz",
+        "id" => "SjyX",
         "images" => %{
-          "amenities" => [
-            %{
-              "description" => "RWS",
-              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/0.jpg"
-            },
-            %{
-              "description" => "Sentosa Gateway",
-              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/6.jpg"
-            }
-          ],
+          "amenities" => [],
           "rooms" => [
             %{
               "description" => "Double room",
-              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/2.jpg"
+              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i93_m.jpg"
             },
             %{
               "description" => "Bathroom",
-              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/4.jpg"
-            },
-            %{
-              "description" => "Double room",
-              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/3.jpg"
+              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i94_m.jpg"
             }
           ],
           "site" => [
             %{
-              "description" => "Front",
-              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/1.jpg"
+              "description" => "Restaurant",
+              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i1_m.jpg"
+            },
+            %{
+              "description" => "Hotel Exterior",
+              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i2_m.jpg"
+            },
+            %{
+              "description" => "Entrance",
+              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i5_m.jpg"
+            },
+            %{
+              "description" => "Bar",
+              "link" => "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i24_m.jpg"
             }
           ]
         },
         "location" => %{
-          "address" => "8 Sentosa Gateway, Beach Villas, 098269",
+          "address" => "1 Nanson Rd, Singapore 238909",
           "city" => "Singapore",
           "country" => "Singapore",
-          "lat" => "1.264751",
-          "lng" => "103.824006"
+          "lat" => nil,
+          "lng" => nil
         },
-        "name" => "Beach Villas Singapore"
+        "name" => "InterContinental Singapore Robertson Quay"
       }
     ]
   end

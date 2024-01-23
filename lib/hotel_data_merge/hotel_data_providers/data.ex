@@ -33,11 +33,12 @@ defmodule HotelDataMerge.HotelDataProviders.Data do
     |> Task.await_many()
     |> List.flatten()
     |> Enum.group_by(& &1.id)
-    |> Enum.map(fn {_, [head | tail]} ->
+    |> Task.async_stream(fn {_, [head | tail]} ->
       Enum.reduce(tail, head, fn data, acc ->
         merge(acc, data, available_keys)
       end)
     end)
+    |> Enum.reduce([], fn {:ok, data}, acc -> [data | acc] end)
   end
 
   # rules on matching fields
