@@ -3,7 +3,20 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
   Schemas for casting internal data to uniform shape
   """
 
-  # helper to clean up input data
+  # trim input data
+  @spec ensure_trim(Ecto.Changeset.t(), list()) :: Ecto.Changeset.t()
+  def ensure_trim(changeset, fields) do
+    Enum.reduce(fields, changeset, fn field, acc ->
+      Ecto.Changeset.update_change(acc, field, &trim/1)
+    end)
+  end
+
+  defp trim(nil), do: nil
+  defp trim(string) when is_binary(string), do: String.trim(string)
+  defp trim(list) when is_list(list), do: for(string <- list, do: trim(string))
+  defp trim(value), do: value
+
+  # format input data
   @spec ensure_format(Ecto.Changeset.t(), list()) :: Ecto.Changeset.t()
   def ensure_format(changeset, fields) do
     Enum.reduce(fields, changeset, fn field, acc ->
@@ -35,7 +48,8 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
     def changeset(data, attrs) do
       data
       |> cast(attrs, [:lat, :lng, :address, :city, :country])
-      |> Unified.ensure_format([:address, :city, :country])
+      |> Unified.ensure_trim([:address])
+      |> Unified.ensure_format([:city, :country])
     end
   end
 
@@ -75,7 +89,7 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
     def changeset(data, attrs) do
       data
       |> cast(attrs, [:link, :description])
-      |> Unified.ensure_format([:description])
+      |> Unified.ensure_trim([:description])
     end
   end
 
@@ -124,7 +138,8 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
     def changeset(attrs) do
       %__MODULE__{}
       |> cast(attrs, [:id, :destination_id, :name, :description, :booking_conditions])
-      |> Unified.ensure_format([:name, :description, :booking_conditions])
+      |> Unified.ensure_trim([:name, :description])
+      |> Unified.ensure_format([:booking_conditions])
       |> validate_required([:id, :destination_id])
       |> cast_embed(:location)
       |> cast_embed(:amenities)
