@@ -1,15 +1,31 @@
-defmodule HotelDataMerge.Hotels do
+defmodule HotelDataMerge.HotelDataProviders.Data do
   @moduledoc """
   Data aggregator module, acts as an interface to all data providers and returns a uniform result set.
+  Easily extendable with new providers.
   """
 
-  alias HotelDataMerge.HotelDataProviders.{Acme, Patagonia, Paperflies}
+  alias HotelDataMerge.HotelDataProviders.DataLoader
+  alias HotelDataMerge.HotelDataProviders.Params.{Acme, Patagonia, Paperflies}
   alias HotelDataMerge.HotelDataProviders.Schemas.Unified
 
+  # data providers and data parser modules
+  @acme_attrs [
+    url: "https://5f2be0b4ffc88500167b85a0.mockapi.io/suppliers/acme",
+    parser_module: Acme
+  ]
+  @patagonia_attrs [
+    url: "https://5f2be0b4ffc88500167b85a0.mockapi.io/suppliers/patagonia",
+    parser_module: Patagonia
+  ]
+  @paperflies_attrs [
+    url: "https://5f2be0b4ffc88500167b85a0.mockapi.io/suppliers/paperflies",
+    parser_module: Paperflies
+  ]
+
   def get_data() do
-    acme_task = Task.async(&Acme.get/0)
-    patagonia_task = Task.async(&Patagonia.get/0)
-    paperflies_task = Task.async(&Paperflies.get/0)
+    acme_task = Task.async(fn -> DataLoader.get(@acme_attrs) end)
+    patagonia_task = Task.async(fn -> DataLoader.get(@patagonia_attrs) end)
+    paperflies_task = Task.async(fn -> DataLoader.get(@paperflies_attrs) end)
 
     available_keys = Map.keys(Unified.Data.__struct__())
 

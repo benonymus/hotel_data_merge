@@ -4,16 +4,16 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
   """
 
   # helper to clean up input data
-  def ensure_trimmed(changeset, fields) do
+  def ensure_format(changeset, fields) do
     Enum.reduce(fields, changeset, fn field, acc ->
-      Ecto.Changeset.update_change(acc, field, &trim/1)
+      Ecto.Changeset.update_change(acc, field, &format/1)
     end)
   end
 
-  def trim(nil), do: nil
-  def trim(string) when is_binary(string), do: string |> String.trim() |> Recase.to_sentence()
-  def trim(list) when is_list(list), do: for(string <- list, do: trim(string))
-  def trim(value), do: value
+  defp format(nil), do: nil
+  defp format(string) when is_binary(string), do: string |> String.trim() |> Recase.to_sentence()
+  defp format(list) when is_list(list), do: for(string <- list, do: format(string))
+  defp format(value), do: value
 
   defmodule Location do
     use Ecto.Schema
@@ -33,7 +33,7 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
     def changeset(data, attrs) do
       data
       |> cast(attrs, [:lat, :lng, :address, :city, :country])
-      |> Unified.ensure_trimmed([:address, :city, :country])
+      |> Unified.ensure_format([:address, :city, :country])
     end
   end
 
@@ -52,7 +52,7 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
     def changeset(data, attrs) do
       data
       |> cast(attrs, [:general, :room])
-      |> Unified.ensure_trimmed([:general, :room])
+      |> Unified.ensure_format([:general, :room])
     end
   end
 
@@ -71,7 +71,7 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
     def changeset(data, attrs) do
       data
       |> cast(attrs, [:link, :description])
-      |> Unified.ensure_trimmed([:description])
+      |> Unified.ensure_format([:description])
     end
   end
 
@@ -118,7 +118,7 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
     def changeset(attrs) do
       %__MODULE__{}
       |> cast(attrs, [:id, :destination_id, :name, :description, :booking_conditions])
-      |> Unified.ensure_trimmed([:name, :description, :booking_conditions])
+      |> Unified.ensure_format([:name, :description, :booking_conditions])
       |> validate_required([:id, :destination_id])
       |> cast_embed(:location)
       |> cast_embed(:amenities)
