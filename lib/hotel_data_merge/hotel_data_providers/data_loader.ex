@@ -6,6 +6,7 @@ defmodule HotelDataMerge.HotelDataProviders.DataLoader do
 
   require Logger
 
+  @spec get(list(), map()) :: list()
   def get([url: url, parser_module: parser_module], filters) do
     Req.get(url)
     |> case do

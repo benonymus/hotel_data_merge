@@ -1,9 +1,10 @@
 defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
   @moduledoc """
-  Schmas for casting internal data to unform shape
+  Schemas for casting internal data to uniform shape
   """
 
   # helper to clean up input data
+  @spec ensure_format(Ecto.Changeset.t(), list()) :: Ecto.Changeset.t()
   def ensure_format(changeset, fields) do
     Enum.reduce(fields, changeset, fn field, acc ->
       Ecto.Changeset.update_change(acc, field, &format/1)
@@ -16,6 +17,7 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
   defp format(value), do: value
 
   defmodule Location do
+    @moduledoc false
     use Ecto.Schema
     import Ecto.Changeset
     alias HotelDataMerge.HotelDataProviders.Schemas.Unified
@@ -38,6 +40,7 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
   end
 
   defmodule Amenities do
+    @moduledoc false
     use Ecto.Schema
     import Ecto.Changeset
     alias HotelDataMerge.HotelDataProviders.Schemas.Unified
@@ -57,6 +60,7 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
   end
 
   defmodule ImageModel do
+    @moduledoc false
     use Ecto.Schema
     import Ecto.Changeset
     alias HotelDataMerge.HotelDataProviders.Schemas.Unified
@@ -76,6 +80,7 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
   end
 
   defmodule Images do
+    @moduledoc false
     use Ecto.Schema
     import Ecto.Changeset
 
@@ -97,6 +102,7 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
   end
 
   defmodule Data do
+    @moduledoc false
     use Ecto.Schema
     import Ecto.Changeset
     alias HotelDataMerge.HotelDataProviders.Schemas.Unified

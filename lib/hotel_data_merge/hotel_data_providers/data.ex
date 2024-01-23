@@ -3,9 +3,8 @@ defmodule HotelDataMerge.HotelDataProviders.Data do
   Data aggregator module, acts as an interface to all data providers and returns a uniform result set.
   Easily extendable with new providers.
   """
-
   alias HotelDataMerge.HotelDataProviders.DataLoader
-  alias HotelDataMerge.HotelDataProviders.Params.{Acme, Patagonia, Paperflies}
+  alias HotelDataMerge.HotelDataProviders.Params.{Acme, Paperflies, Patagonia}
   alias HotelDataMerge.HotelDataProviders.Schemas.Unified
 
   # data provider urls and data parser modules
@@ -22,6 +21,7 @@ defmodule HotelDataMerge.HotelDataProviders.Data do
     parser_module: Paperflies
   ]
 
+  @spec get(map) :: list()
   def get(filters) do
     acme_task = Task.async(fn -> DataLoader.get(@acme_attrs, filters) end)
     patagonia_task = Task.async(fn -> DataLoader.get(@patagonia_attrs, filters) end)

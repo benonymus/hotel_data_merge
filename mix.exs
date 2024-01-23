@@ -41,7 +41,8 @@ defmodule HotelDataMerge.MixProject do
       {:bandit, ">= 0.0.0"},
       {:req, "~> 0.4.0"},
       {:parameter, "~> 0.13.0"},
-      {:recase, "~> 0.7.0"}
+      {:recase, "~> 0.7.0"},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end
 

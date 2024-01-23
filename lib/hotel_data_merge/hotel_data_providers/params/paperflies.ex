@@ -5,6 +5,7 @@ defmodule HotelDataMerge.HotelDataProviders.Params.Paperflies do
   use Parameter.Schema
 
   defmodule ImageModel do
+    @moduledoc false
     use Parameter.Schema
 
     param do
@@ -38,5 +39,6 @@ defmodule HotelDataMerge.HotelDataProviders.Params.Paperflies do
     end
   end
 
+  @spec load(map()) :: {:ok, map()} | {:error, any()}
   def load(data), do: Parameter.load(__MODULE__, data, ignore_empty: true, ignore_nil: true)
 end

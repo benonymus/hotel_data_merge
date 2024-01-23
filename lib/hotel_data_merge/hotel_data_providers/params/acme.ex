@@ -25,6 +25,7 @@ defmodule HotelDataMerge.HotelDataProviders.Params.Acme do
     end
   end
 
+  @spec load(map()) :: {:ok, map()} | {:error, any()}
   def load(data) do
     data =
       data
