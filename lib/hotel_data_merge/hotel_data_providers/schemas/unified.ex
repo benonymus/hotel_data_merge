@@ -1,11 +1,24 @@
 defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
   @moduledoc """
-  Schmas for casting internal data
+  Schmas for casting internal data to unform shape
   """
+
+  # helper to clean up input data
+  def ensure_trimmed(changeset, fields) do
+    Enum.reduce(fields, changeset, fn field, acc ->
+      Ecto.Changeset.update_change(acc, field, &trim/1)
+    end)
+  end
+
+  def trim(nil), do: nil
+  def trim(string) when is_binary(string), do: String.trim(string)
+  def trim(list) when is_list(list), do: for(string <- list, do: trim(string))
+  def trim(value), do: value
 
   defmodule Location do
     use Ecto.Schema
     import Ecto.Changeset
+    alias HotelDataMerge.HotelDataProviders.Schemas.Unified
 
     @primary_key false
 
@@ -17,12 +30,17 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
       field(:country, :string)
     end
 
-    def changeset(data, attrs), do: cast(data, attrs, [:lat, :lng, :address, :city, :country])
+    def changeset(data, attrs) do
+      data
+      |> cast(attrs, [:lat, :lng, :address, :city, :country])
+      |> Unified.ensure_trimmed([:address, :city, :country])
+    end
   end
 
   defmodule Amenities do
     use Ecto.Schema
     import Ecto.Changeset
+    alias HotelDataMerge.HotelDataProviders.Schemas.Unified
 
     @primary_key false
 
@@ -31,12 +49,17 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
       field(:room, {:array, :string})
     end
 
-    def changeset(data, attrs), do: cast(data, attrs, [:general, :room])
+    def changeset(data, attrs) do
+      data
+      |> cast(attrs, [:general, :room])
+      |> Unified.ensure_trimmed([:general, :room])
+    end
   end
 
   defmodule ImageModel do
     use Ecto.Schema
     import Ecto.Changeset
+    alias HotelDataMerge.HotelDataProviders.Schemas.Unified
 
     @primary_key false
 
@@ -45,7 +68,11 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
       field(:description, :string)
     end
 
-    def changeset(data, attrs), do: cast(data, attrs, [:link, :description])
+    def changeset(data, attrs) do
+      data
+      |> cast(attrs, [:link, :description])
+      |> Unified.ensure_trimmed([:link, :description])
+    end
   end
 
   defmodule Images do
@@ -72,6 +99,7 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
   defmodule Data do
     use Ecto.Schema
     import Ecto.Changeset
+    alias HotelDataMerge.HotelDataProviders.Schemas.Unified
 
     @primary_key false
 
@@ -90,6 +118,7 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
     def changeset(attrs) do
       %__MODULE__{}
       |> cast(attrs, [:id, :destination_id, :name, :description, :booking_conditions])
+      |> Unified.ensure_trimmed([:name, :description, :booking_conditions])
       |> validate_required([:id, :destination_id])
       |> cast_embed(:location)
       |> cast_embed(:amenities)
