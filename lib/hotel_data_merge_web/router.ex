@@ -7,5 +7,7 @@ defmodule HotelDataMergeWeb.Router do
 
   scope "/api", HotelDataMergeWeb do
     pipe_through :api
+
+    get "/hotels", HotelController, :index
   end
 end

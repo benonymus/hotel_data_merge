@@ -33,11 +33,14 @@ defmodule HotelDataMerge.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.7.10"},
+      {:ecto, "~> 3.11"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, ">= 0.0.0"}
+      {:bandit, ">= 0.0.0"},
+      {:req, "~> 0.4.0"},
+      {:parameter, "~> 0.13.0"}
     ]
   end
 
