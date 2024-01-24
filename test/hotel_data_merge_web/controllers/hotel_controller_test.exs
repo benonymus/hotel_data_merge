@@ -71,8 +71,8 @@ defmodule HotelDataMergeWeb.HotelControllerTest do
         "address" => "8 Sentosa Gateway, Beach Villas, 098269",
         "city" => "Singapore",
         "country" => "Singapore",
-        "lat" => "1.264751",
-        "lng" => "103.824006"
+        "lat" => 1.264751,
+        "lng" => 103.824006
       },
       "name" => "Beach Villas Singapore"
     },
@@ -138,8 +138,8 @@ defmodule HotelDataMergeWeb.HotelControllerTest do
         "address" => "160-0023, SHINJUKU-KU, 6-6-2 NISHI-SHINJUKU, JAPAN",
         "city" => "Tokyo",
         "country" => "Japan",
-        "lat" => "35.6926",
-        "lng" => "139.690965"
+        "lat" => 35.6926,
+        "lng" => 139.690965
       },
       "name" => "Hilton Shinjuku Tokyo"
     },

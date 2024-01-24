@@ -38,8 +38,8 @@ defmodule HotelDataMerge.HotelDataProviders.Schemas.Unified do
     @primary_key false
 
     embedded_schema do
-      field(:lat, :decimal)
-      field(:lng, :decimal)
+      field(:lat, :float)
+      field(:lng, :float)
       field(:address, :string)
       field(:city, :string)
       field(:country, :string)

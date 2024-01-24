@@ -27,8 +27,8 @@ defmodule HotelDataMerge.HotelDataProviders.Params.Patagonia do
     end
 
     has_one :location, Location do
-      field(:lat, :decimal)
-      field(:lng, :decimal)
+      field(:lat, :float)
+      field(:lng, :float)
       field(:address, :string)
     end
 

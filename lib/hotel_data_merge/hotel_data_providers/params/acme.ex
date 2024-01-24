@@ -17,8 +17,8 @@ defmodule HotelDataMerge.HotelDataProviders.Params.Acme do
     end
 
     has_one :location, Location do
-      field(:lat, :decimal, key: "Latitude")
-      field(:lng, :decimal, key: "Longitude")
+      field(:lat, :float, key: "Latitude")
+      field(:lng, :float, key: "Longitude")
       field(:address, :string, key: "Address")
       field(:city, :string, key: "City")
       field(:country, :string, key: "Country")
