@@ -23,19 +23,15 @@ defmodule HotelDataMerge.HotelDataProviders.Data do
 
   @spec get(map) :: list()
   def get(filters) do
-    acme_task = Task.async(fn -> DataLoader.get(@acme_attrs, filters) end)
-    patagonia_task = Task.async(fn -> DataLoader.get(@patagonia_attrs, filters) end)
-    paperflies_task = Task.async(fn -> DataLoader.get(@paperflies_attrs, filters) end)
-
-    available_keys = Map.keys(Unified.Data.__struct__())
-
-    [acme_task, patagonia_task, paperflies_task]
-    |> Task.await_many()
-    |> Enum.concat()
+    # order of providers matters for the merging
+    # it gives an edge on values with the same length, place higher quality provider in the front
+    [@acme_attrs, @patagonia_attrs, @paperflies_attrs]
+    |> Task.async_stream(fn attrs -> DataLoader.get(attrs, filters) end)
+    |> Enum.reduce([], fn {:ok, data_set}, acc -> acc ++ data_set end)
     |> Enum.group_by(& &1.id)
     |> Task.async_stream(fn {_, [head | tail]} ->
       Enum.reduce(tail, head, fn data, acc ->
-        merge(acc, data, available_keys)
+        merge(acc, data, Map.keys(Unified.Data.__struct__()))
       end)
     end)
     |> Enum.reduce([], fn {:ok, data}, acc -> [data | acc] end)
@@ -65,13 +61,14 @@ defmodule HotelDataMerge.HotelDataProviders.Data do
   defp resolve_values(value, new_value) when is_list(value) and is_list(new_value) do
     value
     |> Stream.concat(new_value)
-    |> Enum.uniq_by(fn
+    |> Stream.uniq_by(fn
       string when is_binary(string) ->
         string |> String.replace(" ", "") |> String.downcase()
 
       value ->
         value
     end)
+    |> Enum.sort()
   end
 
   defp resolve_values(%Unified.Location{} = value, %Unified.Location{} = new_value),
