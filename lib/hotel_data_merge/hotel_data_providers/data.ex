@@ -31,7 +31,7 @@ defmodule HotelDataMerge.HotelDataProviders.Data do
 
     [acme_task, patagonia_task, paperflies_task]
     |> Task.await_many()
-    |> List.flatten()
+    |> Enum.concat()
     |> Enum.group_by(& &1.id)
     |> Task.async_stream(fn {_, [head | tail]} ->
       Enum.reduce(tail, head, fn data, acc ->
